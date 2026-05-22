@@ -1,36 +1,91 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Take-Home Test — Lambda Hero + Features + Hardware Sections
 
-## Getting Started
+## Overview
 
-First, run the development server:
+Reconstruct **three sections** of [lambda.ai](https://lambda.ai) as pixel-perfect React components in a single project.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+You have **1 hour**. The goal is to complete as much as you can in that time — most candidates won't finish all three sections, and that's expected. What matters is the quality and accuracy of what you do complete.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## What's in this folder
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| File | What it is |
+|------|------------|
+| `artifacts/source_html.html` | Extracted DOM structure — all three sections in order |
+| `artifacts/styles_css.css` | Extracted CSS — full design system + all component styles |
+| `artifacts/hero-screenshot.png` | Reference screenshot — hero section |
+| `artifacts/features-screenshot.png` | Reference screenshot — features section |
+| `artifacts/hardware-screenshot.png` | Reference screenshot — hardware section |
+| `guidelines.json` | Design system overview — all sections |
 
-## Learn More
+**The CSS file is your source of truth.** Every value you need is in there. Do not guess or invent values.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## AI Tool Rules
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+**This test must be completed using [Claude Code](https://claude.ai/code) only.**
 
-## Deploy on Vercel
+- You must use Claude Code (the CLI tool) as your AI assistant throughout the test
+- No other AI tools are permitted — not ChatGPT, Copilot, Cursor, v0, Bolt, or any other assistant
+- Your prompting approach, how you communicate the task to Claude, and how you guide it toward the correct output are all part of what we are assessing
+- The quality of your prompts matters as much as the final output
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Requirements
+
+### Framework
+- **React** is required
+- You may use any React framework or router: **Next.js, Vite + React Router, TanStack Router, Remix**, etc.
+- **Tailwind CSS** is required 
+
+### What to build
+
+All three sections appear on the lambda.ai homepage, stacked vertically in this order:
+
+---
+
+### Section 1 — Hero
+
+Reconstruct the hero section as shown in `artifacts/hero-screenshot.png`
+---
+
+### Section 2 — Features
+
+Reconstruct the features section as shown in `artifacts/features-screenshot.png`
+---
+
+### Section 3 — Hardware
+
+Reconstruct the hardware section as shown in `artifacts/hardware-screenshot.png`
+
+---
+
+## What "visually perfect" means
+
+The reconstruction must match the original so closely that a designer reviewing both side by side would not be able to tell which is the original.
+
+- **Colors, gradients, and shadows** match exactly
+- **Typography** (font family, size, weight, line height, letter spacing) matches exactly
+- **Spacing and padding** between elements matches exactly
+- **Layout and alignment** match exactly
+- **Accordion transitions** (both vertical and horizontal) are smooth and match the original timing
+- All sections are **responsive** — they should work across screen sizes
+
+---
+
+## Submission
+
+1. Complete your implementation
+2. Zip the project folder **without `node_modules`**
+3. Upload the zip to the Google Drive link shared with you
+
+---
+
+## Using the live website
+
+**You must visit [lambda.ai](https://lambda.ai) and study all three sections directly.** The screenshots alone are not enough to fully understand interactions and animations. Open the browser DevTools, inspect computed styles, watch animations in the Elements panel, and monitor the Network tab for assets.
+
+---
