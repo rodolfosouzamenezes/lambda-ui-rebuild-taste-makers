@@ -1,3 +1,17 @@
+# Lambda.ai UI Rebuild — Taste Labs Take-Home Challenge
+
+## Project Summary
+
+This repository contains my submission for the **Taste Labs** frontend engineering take-home challenge: a pixel-perfect reconstruction of [lambda.ai](https://lambda.ai) using React and Tailwind CSS.
+
+**Live demo:** [https://lambda-ui-rebuild-taste-makers.vercel.app](https://lambda-ui-rebuild-taste-makers.vercel.app)
+
+### Objective
+
+Recreate key sections of the Lambda homepage so closely that they are visually indistinguishable from the original when viewed side by side — matching typography, spacing, colors, layout, animations, and responsive behavior as faithfully as possible.
+
+---
+
 # Take-Home Test — Lambda Hero + Features + Hardware Sections
 
 ## Overview
