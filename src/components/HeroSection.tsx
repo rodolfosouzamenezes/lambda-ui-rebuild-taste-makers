@@ -341,52 +341,23 @@ export default function HeroSection() {
         <HeroAnimatedHeading />
 
         <div className="container home-hero__titleContainer">
-          <div className="home-hero__buttonGroup">
-          <a
-            href="#"
-            className="font-mono uppercase"
-            style={{
-              background: "var(--color-neutral-100)",
-              color: "var(--color-neutral-900)",
-              padding: "17px 36px",
-              borderRadius: 0,
-              fontSize: "var(--text-sm)",
-              letterSpacing: "var(--tracking-widest)",
-              boxShadow: "var(--box-shadow-rgb)",
-              transition: "box-shadow var(--transition-snappy)",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.boxShadow = "none";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.boxShadow = "var(--box-shadow-rgb)";
-            }}
-          >
-            Launch GPU instance
-          </a>
-          <a
-            href="#"
-            className="font-mono uppercase"
-            style={{
-              background: "var(--color-ultraviolet-500)",
-              color: "var(--color-neutral-100)",
-              padding: "17px 36px",
-              borderRadius: 0,
-              fontSize: "var(--text-sm)",
-              letterSpacing: "var(--tracking-widest)",
-              transition: "background var(--transition-snappy)",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = "var(--color-ultraviolet-400)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = "var(--color-ultraviolet-500)";
-            }}
-          >
-            Talk to our team
-          </a>
+          <div className="buttonGroup home-hero__buttonGroup" data-align="center">
+            <a
+              href="https://lambda.ai/sign-up"
+              className="button"
+              aria-label="Launch GPU instance"
+            >
+              Launch GPU instance
+            </a>
+            <a
+              href="https://lambda.ai/talk-to-our-team"
+              className="button button--secondary"
+              aria-label="Talk to our team"
+            >
+              Talk to our team
+            </a>
+          </div>
         </div>
-      </div>
       </div>
     </section>
   );

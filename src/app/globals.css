@@ -215,6 +215,29 @@
   --easing-smooth: cubic-bezier(.6, 0, .4, 1);
 }
 
+/* Light-mode scope — used by CTA section (.light-mode.titleBlock) */
+:root .light-mode {
+  --color-text-primary: var(--color-terminal);
+  --color-text-primary-dark: var(--color-shell);
+  --color-text-secondary: var(--color-terminal);
+  --color-text-secondary-dark: var(--color-terminal);
+  --color-background: var(--color-shell);
+  --color-background-gray: var(--color-neutral-300);
+  --color-background-light: var(--color-terminal);
+  --color-background-brand: var(--color-ultraviolet);
+  --color-background-black: var(--color-neutral-1000);
+  --color-button-primary-text: var(--color-shell);
+  --color-button-primary-background: var(--color-terminal);
+  --color-text-link: var(--color-ultraviolet);
+  --color-text-link-hover: var(--color-ultraviolet-300);
+  --color-form-text: var(--color-terminal);
+  --color-form-label: var(--color-neutral-700);
+  --color-form-border: var(--color-terminal);
+  --color-select-color: var(--color-neutral-700);
+  --color-form-placeholder: var(--color-neutral-700);
+  --color-section-label: var(--color-neutral-700);
+}
+
 /* Retina shadow override */
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
   :root {
@@ -1092,16 +1115,20 @@ main {
 /* Hero — eyebrow responsive */
 
 .hero-eyebrow {
+  display: inline-block;
+  position: relative;
   color: var(--color-neutral-100);
   margin-bottom: var(--space-2xs);
   font-size: 1rem;
+  line-height: var(--leading-snug);
   max-width: 98%;
   margin-inline: auto;
+  text-wrap-style: pretty;
 }
 
 @media (min-width: 768px) {
   .hero-eyebrow {
-    font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+    font-size: clamp(1.25rem, 2.5vw, var(--text-xl));
     max-width: 80%;
   }
 }
@@ -1450,9 +1477,16 @@ button:not(.accordionItemHeaderButton, .no-ui-button, .osano-cm-close, .tab-butt
   margin: 0 auto;
 }
 
-.cta-section.light-mode .titleBlock,
-.cta-section .light-mode.titleBlock {
-  color: var(--color-terminal);
+.cta-section .light-mode.titleBlock .h2[data-variant="highlight-dark"] {
+  color: var(--color-shell);
+  background-color: var(--color-terminal);
+}
+
+/* CTA — responsive layout (matches lambda.ai TitleBlock + grid) */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .cta-section .light-mode.titleBlock .grid-x.align-middle {
+    align-items: flex-start;
+  }
 }
 
 .sectionLabel {
@@ -1585,23 +1619,136 @@ button:not(.accordionItemHeaderButton, .no-ui-button, .osano-cm-close, .tab-butt
   .medium-order-2 {
     order: 2;
   }
+}
+
+@media print, screen and (min-width: 1280px) {
+  .grid-x > .large-auto {
+    flex: 1 1 0;
+    width: auto;
+  }
+
+  .grid-x > .large-shrink,
+  .grid-x > .large-1,
+  .grid-x > .large-2,
+  .grid-x > .large-3,
+  .grid-x > .large-4,
+  .grid-x > .large-5,
+  .grid-x > .large-6,
+  .grid-x > .large-7,
+  .grid-x > .large-8,
+  .grid-x > .large-9,
+  .grid-x > .large-10,
+  .grid-x > .large-11,
+  .grid-x > .large-12 {
+    flex: 0 0 auto;
+  }
+
+  .grid-x > .large-shrink {
+    width: auto;
+  }
+
+  .grid-x > .large-1 {
+    width: 8.33333%;
+  }
+
+  .grid-x > .large-2 {
+    width: 16.66667%;
+  }
+
+  .grid-x > .large-3 {
+    width: 25%;
+  }
+
+  .grid-x > .large-4 {
+    width: 33.33333%;
+  }
 
   .grid-x > .large-5 {
-    flex: 0 0 auto;
     width: 41.66667%;
   }
 
+  .grid-x > .large-6 {
+    width: 50%;
+  }
+
   .grid-x > .large-7 {
-    flex: 0 0 auto;
     width: 58.33333%;
+  }
+
+  .grid-x > .large-8 {
+    width: 66.66667%;
+  }
+
+  .grid-x > .large-9 {
+    width: 75%;
+  }
+
+  .grid-x > .large-10 {
+    width: 83.33333%;
+  }
+
+  .grid-x > .large-11 {
+    width: 91.66667%;
+  }
+
+  .grid-x > .large-12 {
+    width: 100%;
+  }
+
+  .grid-margin-x > .large-auto {
+    width: auto;
+  }
+
+  .grid-margin-x > .large-shrink {
+    width: auto;
+  }
+
+  .grid-margin-x > .large-1 {
+    width: calc(8.33333% - 1.875rem);
+  }
+
+  .grid-margin-x > .large-2 {
+    width: calc(16.66667% - 1.875rem);
+  }
+
+  .grid-margin-x > .large-3 {
+    width: calc(25% - 1.875rem);
+  }
+
+  .grid-margin-x > .large-4 {
+    width: calc(33.33333% - 1.875rem);
   }
 
   .grid-margin-x > .large-5 {
     width: calc(41.66667% - 1.875rem);
   }
 
+  .grid-margin-x > .large-6 {
+    width: calc(50% - 1.875rem);
+  }
+
   .grid-margin-x > .large-7 {
     width: calc(58.33333% - 1.875rem);
+  }
+
+  .grid-margin-x > .large-8 {
+    width: calc(66.66667% - 1.875rem);
+  }
+
+  .grid-margin-x > .large-9 {
+    width: calc(75% - 1.875rem);
+  }
+
+  .grid-margin-x > .large-10 {
+    width: calc(83.33333% - 1.875rem);
+  }
+
+  .grid-margin-x > .large-11 {
+    width: calc(91.66667% - 1.875rem);
+  }
+
+  .grid-margin-x > .large-12 {
+    width: calc(100% - 1.875rem);
   }
 }
 
@@ -1683,6 +1830,7 @@ h5,
 .accordion .accordionItemNumberColumn span {
   font-family: var(--font-mono);
   font-weight: var(--font-weight-regular);
+  font-size: clamp(1.5rem, 3vw, var(--text-2xl));
 }
 
 .accordion .accordionItemNumberColumn span:after {
@@ -1890,7 +2038,7 @@ h5,
 
 /* ============================================================
    Hardware section — horizontal accordion
-   (matches lambda.ai HorizontalAccordionIsland breakpoints)
+   (matches lambda.ai HorizontalAccordionIsland-CX-kfiac.css)
    ============================================================ */
 
 .hardware-module {
@@ -1916,7 +2064,6 @@ h5,
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    height: 610px;
   }
 }
 
@@ -2025,10 +2172,6 @@ h5,
 }
 
 @media (min-width: 1024px) {
-  .hardwareAccordionTextContent {
-    height: 132px;
-  }
-
   .hardwareAccordionTextContent.hardwareActiveTextContent {
     height: 300px;
   }
@@ -2047,9 +2190,6 @@ h5,
 
 @media (min-width: 1024px) {
   .hardwareAccordionItemTitle {
-    font-size: 24px;
-    line-height: 31.2px;
-    letter-spacing: -0.24px;
     margin-bottom: -10px;
   }
 }
@@ -2631,6 +2771,212 @@ h6,
   .footer .footerLinesVisible .footerLine:nth-child(7) {
     animation: none;
     bottom: 120px;
+  }
+}
+
+/* ============================================================
+   Lambda Agent Terminal — SchemaConsole (lambda.ai)
+   ============================================================ */
+
+.schema-console-collapsed-tab {
+  all: unset;
+  box-sizing: border-box;
+  position: fixed;
+  display: flex;
+  justify-content: start;
+  width: 100%;
+  right: 0;
+  top: -35px;
+  left: calc(100% - 30px);
+  transform: rotate(90deg);
+  transform-origin: left center;
+  background: rgba(11, 11, 11, 0.5);
+  color: var(--color-text-primary);
+  padding: 17px 25px 17px 45px;
+  cursor: pointer;
+  border-bottom: 1px solid var(--color-background-gray);
+  font-family: var(--font-mono);
+  letter-spacing: 0.05em;
+  z-index: 9999;
+  transition: background var(--transition-snappy);
+  user-select: none;
+  text-align: left;
+}
+
+.schema-console-collapsed-tab:hover {
+  background: rgba(11, 11, 11, 0.85);
+}
+
+.schema-console-collapsed-tab span {
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-tight);
+}
+
+.schema-console-collapsed-tab svg {
+  width: 22px;
+  height: 22px;
+  margin-right: 13px;
+  flex-shrink: 0;
+}
+
+.schema-console-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 500px;
+  height: 100vh;
+  padding-top: 20px;
+  background: rgba(11, 11, 11, 0.85);
+  border-left: 1px solid var(--color-background-gray);
+  z-index: 10000;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  line-height: var(--leading-relaxed);
+  letter-spacing: var(--tracking-tight);
+  transform: translate(100%);
+  visibility: hidden;
+  opacity: 0;
+  transition:
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 0s 0.3s;
+}
+
+.schema-console-panel--open {
+  transform: translate(0);
+  visibility: visible;
+  opacity: 1;
+  transition:
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 0s 0s;
+}
+
+.schema-console-header {
+  padding: 20px 0;
+  margin-left: 20px;
+  margin-right: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.schema-console-header::before,
+.schema-console-header::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, var(--color-background-gray) 50%, transparent 50%);
+  background-size: 13px 1px;
+  background-repeat: repeat-x;
+}
+
+.schema-console-header::before {
+  top: 0;
+}
+
+.schema-console-header::after {
+  bottom: 0;
+}
+
+.schema-console-title {
+  margin: 0;
+  font-size: var(--text-xs);
+  font-weight: var(--font-weight-regular);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-text-primary);
+  font-family: var(--font-mono);
+}
+
+.schema-console-close {
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  transition: all var(--transition-snappy);
+  position: relative;
+}
+
+.schema-console-close::before,
+.schema-console-close::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  transform-origin: center;
+  background: var(--color-text-primary);
+}
+
+.schema-console-close::before {
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.schema-console-close::after {
+  transform: translateY(-50%) rotate(-45deg);
+}
+
+.schema-console-content {
+  font-size: var(--text-xs);
+  padding: 20px;
+  overflow-y: auto;
+  flex: 1;
+  scrollbar-width: thin;
+  scrollbar-color: #333 #000;
+}
+
+.schema-console-line {
+  margin: 0;
+  padding: 2px 0;
+  white-space: normal;
+  word-break: break-word;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  line-height: var(--leading-relaxed);
+  letter-spacing: var(--tracking-tight);
+}
+
+.schema-console-line-prefix {
+  color: var(--color-ultraviolet-300);
+}
+
+.schema-console-line-check {
+  color: var(--color-green-200);
+}
+
+.schema-console-line-x {
+  color: red;
+}
+
+.schema-console-session-id {
+  color: #f5f599;
+}
+
+@media (max-width: 1280px) {
+  .schema-console-panel,
+  .schema-console-collapsed-tab {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .schema-console-panel {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .schema-console-panel,
+  .schema-console-panel--open {
+    transition: none;
   }
 }
 

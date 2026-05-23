@@ -6,10 +6,13 @@ import SecuritySection from "@/components/SecuritySection";
 import HardwareSection from "@/components/HardwareSection";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
+import LambdaAgentTerminal from "@/components/LambdaAgentTerminal";
 
 export default function Home() {
   return (
-    <main>
+    <>
+      <LambdaAgentTerminal />
+      <main>
       <Header />
       <HeroSection />
       <FeaturesSection />
@@ -19,5 +22,6 @@ export default function Home() {
       <CTASection />
       <Footer />
     </main>
+    </>
   );
 }
