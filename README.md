@@ -1,91 +1,155 @@
-# Take-Home Test — Lambda Hero + Features + Hardware Sections
+# AI Website Cloner Template
 
-## Overview
+<a href="https://github.com/JCodesMore/ai-website-cloner-template/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue" alt="MIT License" /></a> <a href="https://github.com/JCodesMore/ai-website-cloner-template/stargazers"><img src="https://img.shields.io/github/stars/JCodesMore/ai-website-cloner-template?style=flat" alt="Stars" /></a> <a href="https://discord.gg/hrTSX5yTpB"><img src="https://img.shields.io/discord/1400896964597383279?label=discord" alt="Discord" /></a>
 
-Reconstruct **three sections** of [lambda.ai](https://lambda.ai) as pixel-perfect React components in a single project.
+A reusable template for reverse-engineering any website into a clean, modern Next.js codebase using AI coding agents. 
 
-You have **1 hour**. The goal is to complete as much as you can in that time — most candidates won't finish all three sections, and that's expected. What matters is the quality and accuracy of what you do complete.
+**Recommended: [Claude Code](https://docs.anthropic.com/en/docs/claude-code) with Opus 4.7 for best results** — but works with a variety of AI coding agents.
 
----
+Point it at a URL, run `/clone-website`, and your AI agent will inspect the site, extract design tokens and assets, write component specs, and dispatch parallel builders to reconstruct every section.
 
-## What's in this folder
+## Demo
 
-| File | What it is |
-|------|------------|
-| `artifacts/source_html.html` | Extracted DOM structure — all three sections in order |
-| `artifacts/styles_css.css` | Extracted CSS — full design system + all component styles |
-| `artifacts/hero-screenshot.png` | Reference screenshot — hero section |
-| `artifacts/features-screenshot.png` | Reference screenshot — features section |
-| `artifacts/hardware-screenshot.png` | Reference screenshot — hardware section |
-| `guidelines.json` | Design system overview — all sections |
+[![Watch the demo](docs/design-references/comparison.png)](https://youtu.be/O669pVZ_qr0)
 
-**The CSS file is your source of truth.** Every value you need is in there. Do not guess or invent values.
+> Click the image above to watch the full demo on YouTube.
 
----
+## Quick Start
 
-## AI Tool Rules
+1. **Clone this repository**
+   ```bash
+   git clone https://github.com/JCodesMore/ai-website-cloner-template.git my-clone
+   cd my-clone
+   ```
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+3. **Start your AI agent** — Claude Code recommended:
+   ```bash
+   claude --chrome
+   ```
+4. **Run the skill**:
+   ```
+   /clone-website <target-url1> [<target-url2> ...]
+   ```
+5. **Customize** (optional) — after the base clone is built, modify as needed
 
-**This test must be completed using [Claude Code](https://claude.ai/code) only.**
+> Using a different agent? Open `AGENTS.md` for project instructions — most agents pick it up automatically.
 
-- You must use Claude Code (the CLI tool) as your AI assistant throughout the test
-- No other AI tools are permitted — not ChatGPT, Copilot, Cursor, v0, Bolt, or any other assistant
-- Your prompting approach, how you communicate the task to Claude, and how you guide it toward the correct output are all part of what we are assessing
-- The quality of your prompts matters as much as the final output
+## Supported Platforms
 
----
+| Agent                                                         | Status                     |
+| ------------------------------------------------------------- | -------------------------- |
+| [Claude Code](https://docs.anthropic.com/en/docs/claude-code) | **Recommended** — Opus 4.7 |
+| [Codex CLI](https://github.com/openai/codex)                  | Supported                  |
+| [OpenCode](https://opencode.ai/)                              | Supported                  |
+| [GitHub Copilot](https://github.com/features/copilot)         | Supported                  |
+| [Cursor](https://cursor.com/)                                 | Supported                  |
+| [Windsurf](https://codeium.com/windsurf)                      | Supported                  |
+| [Gemini CLI](https://github.com/google-gemini/gemini-cli)     | Supported                  |
+| [Cline](https://github.com/cline/cline)                       | Supported                  |
+| [Roo Code](https://github.com/RooCodeInc/Roo-Code)            | Supported                  |
+| [Continue](https://continue.dev/)                             | Supported                  |
+| [Amazon Q](https://aws.amazon.com/q/developer/)               | Supported                  |
+| [Augment Code](https://www.augmentcode.com/)                  | Supported                  |
+| [Aider](https://aider.chat/)                                  | Supported                  |
 
-## Requirements
+## Prerequisites
 
-### Framework
-- **React** is required
-- You may use any React framework or router: **Next.js, Vite + React Router, TanStack Router, Remix**, etc.
-- **Tailwind CSS** is required 
+- [Node.js](https://nodejs.org/) 24+
+- An AI coding agent (see [Supported Platforms](#supported-platforms))
 
-### What to build
+## Tech Stack
 
-All three sections appear on the lambda.ai homepage, stacked vertically in this order:
+- **Next.js 16** — App Router, React 19, TypeScript strict
+- **shadcn/ui** — Radix primitives + Tailwind CSS v4
+- **Tailwind CSS v4** — oklch design tokens
+- **Lucide React** — default icons (replaced by extracted SVGs during cloning)
 
----
+## How It Works
 
-### Section 1 — Hero
+The `/clone-website` skill runs a multi-phase pipeline:
 
-Reconstruct the hero section as shown in `artifacts/hero-screenshot.png`
----
+1. **Reconnaissance** — screenshots, design token extraction, interaction sweep (scroll, click, hover, responsive)
+2. **Foundation** — updates fonts, colors, globals, downloads all assets
+3. **Component Specs** — writes detailed spec files (`docs/research/components/`) with exact computed CSS values, states, behaviors, and content
+4. **Parallel Build** — dispatches builder agents in git worktrees, one per section/component
+5. **Assembly & QA** — merges worktrees, wires up the page, runs visual diff against the original
 
-### Section 2 — Features
+Each builder agent receives the full component specification inline — exact `getComputedStyle()` values, interaction models, multi-state content, responsive breakpoints, and asset paths. No guessing.
 
-Reconstruct the features section as shown in `artifacts/features-screenshot.png`
----
+## Use Cases
 
-### Section 3 — Hardware
+- **Platform migration** — rebuild a site you own from WordPress/Webflow/Squarespace into a modern Next.js codebase
+- **Lost source code** — your site is live but the repo is gone, the developer left, or the stack is legacy. Get the code back in a modern format
+- **Learning** — deconstruct how production sites achieve specific layouts, animations, and responsive behavior by working with real code
 
-Reconstruct the hardware section as shown in `artifacts/hardware-screenshot.png`
+## Not Intended For
 
----
+- **Phishing or impersonation** — this project must not be used for deceptive purposes, impersonation, or any activity that breaks the law.
+- **Passing off someone's design as your own** — logos, brand assets, and original copy belong to their owners.
+- **Violating terms of service** — some sites explicitly prohibit scraping or reproduction. Check first.
 
-## What "visually perfect" means
+## Project Structure
 
-The reconstruction must match the original so closely that a designer reviewing both side by side would not be able to tell which is the original.
+```
+src/
+  app/              # Next.js routes
+  components/       # React components
+    ui/             # shadcn/ui primitives
+    icons.tsx       # Extracted SVG icons
+  lib/utils.ts      # cn() utility
+  types/            # TypeScript interfaces
+  hooks/            # Custom React hooks
+public/
+  images/           # Downloaded images from target
+  videos/           # Downloaded videos from target
+  seo/              # Favicons, OG images
+docs/
+  research/         # Extraction output & component specs
+  design-references/ # Screenshots
+scripts/
+  sync-agent-rules.sh  # Regenerate agent instruction files
+  sync-skills.mjs      # Regenerate /clone-website for all platforms
+AGENTS.md           # Agent instructions (single source of truth)
+CLAUDE.md           # Claude Code config (imports AGENTS.md)
+GEMINI.md           # Gemini CLI config (imports AGENTS.md)
+```
 
-- **Colors, gradients, and shadows** match exactly
-- **Typography** (font family, size, weight, line height, letter spacing) matches exactly
-- **Spacing and padding** between elements matches exactly
-- **Layout and alignment** match exactly
-- **Accordion transitions** (both vertical and horizontal) are smooth and match the original timing
-- All sections are **responsive** — they should work across screen sizes
+## Commands
 
----
+```bash
+npm run dev    # Start dev server
+npm run build  # Production build
+npm run lint   # ESLint check
+npm run typecheck # TypeScript check
+npm run check  # Run lint + typecheck + build
+```
 
-## Submission
+### If using docker
 
-1. Complete your implementation
-2. Zip the project folder **without `node_modules`**
-3. Upload the zip to the Google Drive link shared with you
+```bash
+docker compose up app --build # build and run the app
+docker compose up dev --build # run the app in dev mode on port 3001
+```
 
----
+## Updating for Other Platforms
 
-## Using the live website
+Two source-of-truth files power all platform support. Edit the source, then run the sync script:
 
-**You must visit [lambda.ai](https://lambda.ai) and study all three sections directly.** The screenshots alone are not enough to fully understand interactions and animations. Open the browser DevTools, inspect computed styles, watch animations in the Elements panel, and monitor the Network tab for assets.
+| What                   | Source of truth                         | Sync command                       |
+| ---------------------- | --------------------------------------- | ---------------------------------- |
+| Project instructions   | `AGENTS.md`                             | `bash scripts/sync-agent-rules.sh` |
+| `/clone-website` skill | `.claude/skills/clone-website/SKILL.md` | `node scripts/sync-skills.mjs`     |
 
----
+Each script regenerates the platform-specific copies automatically. Agents that read the source files natively need no regeneration.
+
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=JCodesMore/ai-website-cloner-template&type=Date)](https://star-history.com/#JCodesMore/ai-website-cloner-template&Date)
+
+## License
+
+MIT
