@@ -1,26 +1,559 @@
 @import "tailwindcss";
 
+/* ============================================================
+   @font-face
+   ============================================================ */
+
+@font-face {
+  font-display: swap;
+  font-family: "Suisse Intl Mono";
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://21998649.fs1.hubspotusercontent-na1.net/hubfs/21998649/web-static/fonts/SuisseIntlMono-Regular.woff2) format("woff2"),
+       url(https://21998649.fs1.hubspotusercontent-na1.net/hubfs/21998649/web-static/fonts/SuisseIntlMono-Regular.woff) format("woff");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Suisse Intl Mono";
+  font-style: normal;
+  font-weight: 600;
+  src: url(https://21998649.fs1.hubspotusercontent-na1.net/hubfs/21998649/web-static/fonts/SuisseIntlMono-Bold.woff2) format("woff2"),
+       url(https://21998649.fs1.hubspotusercontent-na1.net/hubfs/21998649/web-static/fonts/SuisseIntlMono-Bold.woff) format("woff");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Suisse Intl";
+  font-style: normal;
+  font-weight: 300;
+  src: url(https://21998649.fs1.hubspotusercontent-na1.net/hubfs/21998649/web-static/fonts/SuisseIntl-Light.woff2) format("woff2"),
+       url(https://21998649.fs1.hubspotusercontent-na1.net/hubfs/21998649/web-static/fonts/SuisseIntl-Light.woff) format("woff");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Suisse Intl";
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://21998649.fs1.hubspotusercontent-na1.net/hubfs/21998649/web-static/fonts/SuisseIntl-Regular.woff2) format("woff2"),
+       url(https://21998649.fs1.hubspotusercontent-na1.net/hubfs/21998649/web-static/fonts/SuisseIntl-Regular.woff) format("woff");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Suisse Intl";
+  font-style: italic;
+  font-weight: 400;
+  src: url(https://21998649.fs1.hubspotusercontent-na1.net/hubfs/21998649/web-static/fonts/SuisseIntl-Italic.woff2) format("woff2"),
+       url(https://21998649.fs1.hubspotusercontent-na1.net/hubfs/21998649/web-static/fonts/SuisseIntl-Italic.woff) format("woff");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Suisse Intl";
+  font-style: normal;
+  font-weight: 600;
+  src: url(https://21998649.fs1.hubspotusercontent-na1.net/hubfs/21998649/web-static/fonts/SuisseIntl-SemiBold.woff2) format("woff2"),
+       url(https://21998649.fs1.hubspotusercontent-na1.net/hubfs/21998649/web-static/fonts/SuisseIntl-SemiBold.woff) format("woff");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Suisse Intl";
+  font-style: italic;
+  font-weight: 600;
+  src: url(https://21998649.fs1.hubspotusercontent-na1.net/hubfs/21998649/web-static/fonts/SuisseIntl-SemiBoldItalic.woff2) format("woff2"),
+       url(https://21998649.fs1.hubspotusercontent-na1.net/hubfs/21998649/web-static/fonts/SuisseIntl-SemiBoldItalic.woff) format("woff");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Suisse Intl";
+  font-style: normal;
+  font-weight: 700;
+  src: url(https://21998649.fs1.hubspotusercontent-na1.net/hubfs/21998649/web-static/fonts/SuisseIntl-Bold.woff2) format("woff2"),
+       url(https://21998649.fs1.hubspotusercontent-na1.net/hubfs/21998649/web-static/fonts/SuisseIntl-Bold.woff) format("woff");
+}
+
+@font-face {
+  ascent-override: 92%;
+  descent-override: 22%;
+  font-display: swap;
+  font-family: apkarchivr21;
+  font-style: normal;
+  font-weight: 400;
+  line-gap-override: 0%;
+  src: url(https://21998649.fs1.hubspotusercontent-na1.net/hubfs/21998649/web-static/fonts/apkarchivr21_regular-webfont.woff) format("woff");
+}
+
+/* ============================================================
+   :root — Design tokens
+   ============================================================ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Colors — neutrals */
+  --color-neutral-1000: #000000;
+  --color-neutral-900: #0b0b0b;
+  --color-neutral-800: #262625;
+  --color-neutral-800-faded: rgba(37, 37, 37, .6);
+  --color-neutral-700: #42413e;
+  --color-neutral-600: #5e5d58;
+  --color-neutral-500: #797872;
+  --color-neutral-400: #95948c;
+  --color-neutral-300: #b0afa6;
+  --color-neutral-300-light: rgba(185, 184, 174, .2);
+  --color-neutral-200: #cccbbf;
+  --color-neutral-100: #e7e6d9;
+  --color-neutral-0: #ffffff;
+
+  /* Colors — ultraviolet */
+  --color-ultraviolet-100: #e0d7fd;
+  --color-ultraviolet-200: #c0affb;
+  --color-ultraviolet-300: #a186f8;
+  --color-ultraviolet-400: #815ef6;
+  --color-ultraviolet-500: #6236f4;
+  --color-ultraviolet-600: #4e2bc3;
+  --color-ultraviolet-700: #3b2092;
+  --color-ultraviolet-800: #271662;
+  --color-ultraviolet-900: #140b31;
+
+  /* Colors — accents */
+  --color-cyan-500: #00e6d9;
+  --color-green-200: #99f599;
+
+  /* Semantic aliases */
+  --color-shell: var(--color-neutral-100);
+  --color-terminal: var(--color-neutral-900);
+  --color-ultraviolet: var(--color-ultraviolet-500);
+
+  /* Semantic — backgrounds */
+  --color-background: var(--color-terminal);
+  --color-background-gray: var(--color-neutral-800);
+  --color-background-black: var(--color-neutral-1000);
+
+  /* Semantic — text */
+  --color-text-primary: var(--color-shell);
+  --color-text-secondary: var(--color-neutral-300);
+
+  /* Semantic — buttons */
+  --color-button-primary-text: var(--color-terminal);
+  --color-button-primary-background: var(--color-shell);
+  --color-button-secondary-text: var(--color-shell);
+  --color-button-secondary-background: var(--color-ultraviolet);
+  --color-button-secondary-background-hover: var(--color-ultraviolet-400);
+
+  /* Typography */
+  --font-mono: "Suisse Intl Mono", "Courier New", monospace;
+  --font-sans: "Suisse Intl", Helvetica, Arial, sans-serif;
+  --font-pixel: "apkarchivr21", monospace;
+
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --text-2xs: .6875rem;
+  --text-xs: .75rem;
+  --text-sm: .875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.5rem;
+  --text-2xl: 2.15rem;
+  --text-3xl: 3rem;
+  --text-4xl: 3.75rem;
+  --text-5xl: 4.5rem;
+  --text-6xl: 6rem;
+  --text-7xl: 7.315rem;
+
+  --leading-none: 100%;
+  --leading-tight: 110%;
+  --leading-snug: 120%;
+  --leading-normal: 130%;
+  --leading-relaxed: 150%;
+  --leading-loose: 160%;
+
+  --tracking-tighter: -.02em;
+  --tracking-tight: -.01em;
+  --tracking-normal: 0;
+  --tracking-wide: .01em;
+  --tracking-wider: .02em;
+  --tracking-widest: .05em;
+
+  /* Spacing */
+  --space-0: 0;
+  --space-4xs: 5px;
+  --space-3xs: 10px;
+  --space-2xs: 20px;
+  --space-xs: 40px;
+  --space-regular: 48px;
+  --space-sm: 60px;
+  --space-md: 80px;
+  --space-lg: 100px;
+  --space-xl: 160px;
+  --space-2xl: 240px;
+
+  /* Shadows — chromatic aberration */
+  --box-shadow-rgb: 0 .99px 0 0 #ff0, .99px 0 0 0 #0ff, 1.98px .99px 0 0 #0f0,
+                    0 -.99px 0 0 #00f, -.99px 0 0 0 #f0f, -1.98px 0 0 0 #f00;
+  --text-shadow-rgb: 0 .99px 0 #ff0, .99px 0 0 #0ff, 1.98px .99px 0 #0f0,
+                     0 -.99px 0 #00f, -.99px 0 0 #f0f, -1.98px 0 0 #f00;
+
+  /* Transitions */
+  --transition-snappy: .1s cubic-bezier(.6, 0, .4, 1);
+  --transition-smooth: .4s cubic-bezier(.6, 0, .4, 1);
+  --easing-snappy: cubic-bezier(.6, 0, .4, 1);
+  --easing-smooth: cubic-bezier(.6, 0, .4, 1);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+/* Retina shadow override */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --box-shadow-rgb: 0 .5px 0 0 #ff0, .5px 0 0 0 #0ff, 1px .5px 0 0 #0f0,
+                      0 -.5px 0 0 #00f, -.5px 0 0 0 #f0f, -1px 0 0 0 #f00;
+    --text-shadow-rgb: 0 .5px 0 #ff0, .5px 0 0 #0ff, 1px .5px 0 #0f0,
+                       0 -.5px 0 #00f, -.5px 0 0 #f0f, -1px 0 0 #f00;
   }
 }
 
+/* ============================================================
+   Tailwind theme — map CSS vars into Tailwind utilities
+   ============================================================ */
+
+@theme inline {
+  --color-terminal: var(--color-terminal);
+  --color-terminal-deep: var(--color-neutral-1000);
+  --color-shell: var(--color-shell);
+  --color-ultraviolet: var(--color-ultraviolet);
+  --color-ultraviolet-400: var(--color-ultraviolet-400);
+  --color-neutral-800: var(--color-neutral-800);
+  --color-neutral-400: var(--color-neutral-400);
+  --color-neutral-300: var(--color-neutral-300);
+
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+  --font-pixel: var(--font-pixel);
+}
+
+/* ============================================================
+   Base styles
+   ============================================================ */
+
+html {
+  interpolate-size: allow-keywords;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  color: var(--color-text-primary);
+  background-color: var(--color-background);
+}
+
+/* ============================================================
+   Hero — responsive heading sizes
+   ============================================================ */
+
+.hero-heading {
+  font-size: 2.6rem;
+}
+
+@media (min-width: 480px) {
+  .hero-heading {
+    font-size: var(--text-3xl);
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-heading {
+    font-size: var(--text-5xl);
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-heading {
+    font-size: var(--text-6xl);
+  }
+}
+
+@media (min-width: 1280px) {
+  .hero-heading {
+    font-size: var(--text-7xl);
+  }
+}
+
+/* Hero — eyebrow responsive */
+
+.hero-eyebrow {
+  color: var(--color-neutral-100);
+  margin-bottom: var(--space-2xs);
+  font-size: 1rem;
+  max-width: 98%;
+  margin-inline: auto;
+}
+
+@media (min-width: 768px) {
+  .hero-eyebrow {
+    font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+    max-width: 80%;
+  }
+}
+
+/* Hero — reduced motion */
+
+._reducedMotionTitle {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ._reducedMotionTitle {
+    display: block;
+  }
+  ._heroTitle {
+    display: none;
+  }
+}
+
+/* ============================================================
+   Features — accordion transitions
+   ============================================================ */
+
+.accordionItemContent {
+  max-height: 0px;
+  overflow: hidden;
+  visibility: hidden;
+  transition: max-height 0.6s linear, padding 0.6s linear, visibility 0.6s linear;
+}
+
+.accordionItemContentOpen {
+  max-height: 400px;
+  padding-top: 20px;
+  visibility: visible;
+}
+
+/* Features — responsive grid */
+
+.features-grid {
+  flex-direction: column !important;
+}
+
+.features-accordion {
+  width: 100%;
+}
+
+.features-illustration {
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .features-grid {
+    flex-direction: row !important;
+  }
+
+  .features-accordion {
+    width: 58.33%;
+  }
+
+  .features-illustration {
+    width: 41.67%;
+    padding-left: 40px;
+    margin-top: -40px;
+  }
+
+  h2 + .features-grid {
+    margin-top: var(--space-sm);
+  }
+}
+
+/* ============================================================
+   Hardware — title block
+   ============================================================ */
+
+.hardware-title-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.hardware-title-left {
+  width: 100%;
+}
+
+.hardware-title-right {
+  width: 100%;
+  padding-top: 20px;
+}
+
+@media (min-width: 768px) {
+  .hardware-title-block {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .hardware-title-left {
+    width: 58.333%;
+  }
+
+  .hardware-title-right {
+    width: 41.667%;
+    padding-top: 40px;
+  }
+}
+
+/* ============================================================
+   Hardware — horizontal accordion
+   ============================================================ */
+
+.hardware-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 80px;
+  height: auto;
+}
+
+@media (max-width: 767px) {
+  .hardware-card {
+    height: auto;
+    min-height: 300px;
+    flex: none !important;
+  }
+
+  .hardware-card-image {
+    position: relative;
+    height: 300px;
+  }
+
+  .hardware-card-text {
+    height: auto !important;
+  }
+
+  .hardware-card-description {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    position: static !important;
+    padding-top: 20px;
+  }
+
+  .hardware-indicator {
+    display: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .hardware-accordion {
+    flex-direction: row;
+    height: 610px;
+  }
+
+  .hardware-card {
+    height: 610px;
+  }
+
+  .hardware-card-image {
+    position: absolute;
+    inset: 0;
+  }
+
+  .hardware-card-text {
+    height: 132px;
+  }
+
+  .hardware-card[aria-expanded="true"] .hardware-card-text {
+    height: 300px;
+  }
+
+  .hardware-card-description {
+    position: absolute;
+    top: 85px;
+    left: 0;
+    padding: 0 40px;
+    height: 170px;
+  }
+}
+
+/* ============================================================
+   Scale — product cards grid
+   ============================================================ */
+
+.scale-cards-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  margin-top: 80px;
+}
+
+@media (min-width: 768px) {
+  .scale-cards-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .scale-card:last-child {
+    grid-column: 1 / -1;
+    max-width: 50%;
+    margin: 0 auto;
+  }
+}
+
+@media (min-width: 1024px) {
+  .scale-cards-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .scale-card:last-child {
+    grid-column: auto;
+    max-width: none;
+    margin: 0;
+  }
+}
+
+/* ============================================================
+   Footer — grid
+   ============================================================ */
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px 20px;
+}
+
+@media (min-width: 768px) {
+  .footer-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .footer-grid {
+    grid-template-columns: repeat(7, 1fr);
+    gap: 20px;
+  }
+}
+
+.footer-bottom {
+  flex-direction: column;
+  align-items: flex-start !important;
+}
+
+@media (min-width: 768px) {
+  .footer-bottom {
+    flex-direction: row;
+    align-items: center !important;
+  }
+}
+
+/* Utility — screen-reader only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
 }
