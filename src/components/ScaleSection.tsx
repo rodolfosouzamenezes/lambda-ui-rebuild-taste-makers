@@ -1,4 +1,4 @@
-"use client";
+import ScaleBackgroundGrid from "./ScaleBackgroundGrid";
 
 const PRODUCTS = [
   {
@@ -6,154 +6,69 @@ const PRODUCTS = [
     title: "Superclusters",
     description:
       "Run on single-tenant NVIDIA GB300 NVL72 clusters with NVIDIA Quantum-2 InfiniBand for ultimate security and performance.",
+    href: "https://lambda.ai/superclusters",
   },
   {
     number: "02",
     title: "1-Click Clusters™",
     description:
       "Production-ready NVIDIA HGX B200 and H100 GPU clusters fully optimized for distributed AI workloads.",
+    href: "https://lambda.ai/1-click-clusters",
   },
   {
     number: "03",
     title: "Instances",
     description:
       "Spin up HGX B200 and H100 instances in minutes to test and prototype quickly.",
+    href: "https://lambda.ai/instances",
   },
-];
+] as const;
 
 export default function ScaleSection() {
   return (
-    <section
-      style={{
-        background: "var(--color-neutral-900)",
-        padding: "clamp(100px, 12vw, 160px) 0",
-      }}
-    >
-      {/* Section border */}
-      <div
-        style={{
-          maxWidth: 1398,
-          margin: "0 auto",
-          paddingInline: 15,
-          borderTop: "1px solid var(--color-neutral-800)",
-        }}
-      />
-
-      <div
-        style={{
-          maxWidth: 1398,
-          margin: "0 auto",
-          paddingInline: 15,
-          paddingTop: "clamp(60px, 8vw, 100px)",
-        }}
-      >
-        {/* Title block */}
-        <div style={{ maxWidth: "58.33%" }}>
-          <h2
-            className="font-sans font-semibold"
-            style={{
-              fontSize: "clamp(2.3rem, 6vw, 4.5rem)",
-              lineHeight: "var(--leading-tight)",
-              letterSpacing: "var(--tracking-tighter)",
-              color: "var(--color-neutral-100)",
-              margin: 0,
-            }}
-          >
-            Supercomputers that scale with ambition
-          </h2>
-        </div>
-
-        {/* Subtitle with L-bracket */}
-        <div
-          style={{
-            display: "flex",
-            alignItems: "flex-start",
-            gap: 20,
-            marginTop: 40,
-            maxWidth: "58.33%",
-          }}
-        >
-          <div
-            style={{
-              width: 80,
-              height: 30,
-              borderLeft: "2px solid var(--color-neutral-800)",
-              borderBottom: "2px solid var(--color-neutral-800)",
-              flexShrink: 0,
-              marginTop: 4,
-            }}
-          />
-          <p
-            className="font-mono"
-            style={{
-              fontSize: "var(--text-base)",
-              lineHeight: "var(--leading-relaxed)",
-              color: "var(--color-neutral-100)",
-              margin: 0,
-            }}
-          >
-            From one GPU to hundreds of thousands — performance that keeps pace.
-          </p>
-        </div>
-
-        {/* Product cards grid */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: 8,
-            marginTop: 80,
-          }}
-          className="scale-cards-grid"
-        >
-          {PRODUCTS.map((product) => (
-            <div
-              key={product.number}
-              className="scale-card"
-              style={{
-                background: "var(--color-neutral-900)",
-                border: "1px solid var(--color-neutral-800)",
-                padding: "32px 32px 60px",
-              }}
-            >
-              <div
-                className="font-mono"
-                style={{
-                  fontSize: "var(--text-base)",
-                  color: "var(--color-neutral-100)",
-                  marginBottom: 24,
-                }}
-              >
-                {product.number}
-                <span style={{ color: "var(--color-ultraviolet-500)" }}>/</span>
+    <section id="section-scale" className="pt-xl pb-xl module-comp">
+      <div className="container">
+        <div className="stack--md">
+          <div className="scale-title-block dark-mode titleBlock">
+            <div className="grid-x grid-margin-x">
+              <div className="cell small-12 medium-7">
+                <div>
+                  <h2 className="h2">Supercomputers that scale with ambition</h2>
+                  <div className="content">
+                    <div className="richtext">
+                      From one GPU to hundreds of thousands — performance that keeps pace.
+                    </div>
+                  </div>
+                </div>
               </div>
-              <h3
-                className="font-sans font-semibold"
-                style={{
-                  fontSize: 24,
-                  lineHeight: "31.2px",
-                  letterSpacing: "-0.24px",
-                  color: "var(--color-neutral-100)",
-                  margin: "0 0 16px 0",
-                }}
-              >
-                {product.title}
-              </h3>
-              <p
-                className="font-mono"
-                style={{
-                  fontSize: "var(--text-base)",
-                  lineHeight: "var(--leading-relaxed)",
-                  color: "var(--color-neutral-300)",
-                  margin: 0,
-                }}
-              >
-                {product.description}
-              </p>
             </div>
-          ))}
+          </div>
+
+          <div className="scale-product-cards-container">
+            <ScaleBackgroundGrid />
+
+            <div className="scale-product-cards">
+              {PRODUCTS.map((product) => (
+                <a
+                  key={product.number}
+                  href={product.href}
+                  className="scale-product-card scale-product-card-link"
+                  aria-label={product.title}
+                >
+                  <div className="scale-product-content">
+                    <p className="scale-product-number index-number" aria-hidden="true">
+                      {product.number}
+                    </p>
+                    <h3 className="h6">{product.title}</h3>
+                    <p>{product.description}</p>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
+      <div className="sectionBorder" />
     </section>
   );
 }

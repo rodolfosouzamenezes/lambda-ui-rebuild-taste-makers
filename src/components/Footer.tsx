@@ -1,240 +1,300 @@
-const FOOTER_COLUMNS = [
+"use client";
+
+import Link from "next/link";
+import { useEffect, useRef } from "react";
+
+const FOOTER_LOGO =
+  "https://lambda.ai/hubfs/raw_assets/Lambda%20Marketing%20Website/122/js_client_assets/assets/logo-white-amFAN7ru.svg";
+
+const SOCIAL_LINKS = [
   {
-    heading: "For every mission",
-    links: [
-      { text: "Superintelligence", href: "#" },
-      { text: "Enterprise", href: "#" },
-      { text: "Government", href: "#" },
-      { text: "Startups and researchers", href: "#" },
-    ],
+    href: "https://www.linkedin.com/company/lambda-cloud/",
+    label: "Lambda on LinkedIn",
+    icon: "https://lambda.ai/hubfs/raw_assets/Lambda%20Marketing%20Website/122/js_client_assets/assets/linkedin-608YWfcb.svg",
   },
   {
-    heading: "Foundations",
-    links: [
-      { text: "AI infrastructure", href: "#" },
-      { text: "Trust and security", href: "#" },
-      { text: "Customer stories", href: "#" },
-    ],
+    href: "https://x.com/LambdaAPI",
+    label: "Lambda on X (Twitter)",
+    icon: "https://lambda.ai/hubfs/raw_assets/Lambda%20Marketing%20Website/122/js_client_assets/assets/x-Dm1IIASF.svg",
   },
   {
-    heading: "Products",
-    links: [
-      { text: "Superclusters", href: "#" },
-      { text: "1-Click Clusters", href: "#" },
-      { text: "Instances", href: "#" },
-    ],
-  },
-  {
-    heading: "Features",
-    links: [
-      { text: "AI infrastructure", href: "#" },
-      { text: "Orchestration", href: "#" },
-      { text: "Lambda Stack", href: "#" },
-      { text: "Trust and security", href: "#" },
-    ],
-  },
-  {
-    heading: "Docs",
-    links: [
-      { text: "Documentation", href: "#" },
-      { text: "Blog", href: "#" },
-      { text: "Research", href: "#" },
-    ],
-  },
-  {
-    heading: "Inside Lambda",
-    links: [
-      { text: "About", href: "#" },
-      { text: "Careers", href: "#" },
-      { text: "Leadership", href: "#" },
-      { text: "Investors", href: "#" },
-    ],
-  },
-  {
-    heading: "Resources",
-    links: [
-      { text: "Research", href: "#" },
-      { text: "Customer stories", href: "#" },
-      { text: "Blog", href: "#" },
-      { text: "Partners", href: "#" },
-      { text: "Brand guidelines", href: "#" },
-    ],
+    href: "https://www.youtube.com/@lambda-ai/",
+    label: "Lambda on YouTube",
+    icon: "https://lambda.ai/hubfs/raw_assets/Lambda%20Marketing%20Website/122/js_client_assets/assets/youtube-BUg7SWc3.svg",
   },
 ];
 
-function LambdaLogoSmall() {
-  return (
-    <svg
-      width="40"
-      height="40"
-      viewBox="0 0 40 40"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-label="Lambda"
-    >
-      <path
-        d="M1.46484 1.70898H38.1092V38.2959H1.46484V1.70898ZM4.70436 35.0712H34.8607V4.93062H4.70436V35.0712ZM11.1443 7.79363L17.5182 19.0937L10.4261 32.1808H14.9939L19.7209 23.2484L24.7545 32.1808H29.4064L15.7962 7.79059L11.1443 7.79363Z"
-        fill="var(--color-neutral-300)"
-      />
-    </svg>
-  );
-}
-
 export default function Footer() {
+  const footerRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const footer = footerRef.current;
+    if (!footer) return;
+
+    const lines = footer.querySelector(".footerLines");
+    if (!lines) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          lines.classList.add("footerLinesVisible");
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(footer);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <footer
-      style={{
-        background: "var(--color-neutral-900)",
-        padding: "clamp(100px, 12vw, 160px) 0",
-        borderTop: "1px solid var(--color-neutral-800)",
-      }}
-    >
-      <div
-        style={{
-          maxWidth: 1398,
-          margin: "0 auto",
-          paddingInline: 15,
-        }}
-      >
-        {/* Footer columns grid */}
-        <div
-          className="footer-grid"
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(7, 1fr)",
-            gap: 20,
-          }}
-        >
-          {FOOTER_COLUMNS.map((col) => (
-            <div key={col.heading}>
-              <h4
-                className="font-mono uppercase"
-                style={{
-                  fontSize: "var(--text-xs)",
-                  letterSpacing: "var(--tracking-widest)",
-                  color: "var(--color-neutral-400)",
-                  margin: "0 0 20px 0",
-                }}
-              >
-                {col.heading}
-              </h4>
-              <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
-                {col.links.map((link) => (
-                  <li key={link.text} style={{ marginBottom: 12 }}>
-                    <a
-                      href={link.href}
-                      className="font-mono"
-                      style={{
-                        fontSize: "var(--text-sm)",
-                        color: "var(--color-neutral-300)",
-                        textDecoration: "none",
-                        transition: "color var(--transition-snappy)",
-                      }}
-                    >
-                      {link.text}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+    <footer ref={footerRef} className="py-xl footer">
+      <div className="sectionLabel" aria-hidden="true">
+        <div className="container">
+          <span>FOOTER</span>
         </div>
+      </div>
 
-        {/* Bottom bar */}
-        <div
-          className="footer-bottom"
-          style={{
-            marginTop: 80,
-            paddingTop: 40,
-            borderTop: "1px solid var(--color-neutral-800)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            flexWrap: "wrap",
-            gap: 20,
-          }}
-        >
-          <div
-            style={{ display: "flex", alignItems: "center", gap: 30 }}
-          >
-            <LambdaLogoSmall />
-            <div
-              style={{
-                display: "flex",
-                gap: 20,
-                flexWrap: "wrap",
-              }}
-            >
-              <a
-                href="#"
-                className="font-mono"
-                style={{
-                  fontSize: "var(--text-xs)",
-                  color: "var(--color-neutral-400)",
-                  textDecoration: "none",
-                }}
-              >
-                Privacy Policy
-              </a>
-              <a
-                href="#"
-                className="font-mono"
-                style={{
-                  fontSize: "var(--text-xs)",
-                  color: "var(--color-neutral-400)",
-                  textDecoration: "none",
-                }}
-              >
-                Terms of Service
-              </a>
-              <a
-                href="#"
-                className="font-mono"
-                style={{
-                  fontSize: "var(--text-xs)",
-                  color: "var(--color-neutral-400)",
-                  textDecoration: "none",
-                }}
-              >
-                Cookie preferences
-              </a>
+      <div className="container">
+        <nav aria-label="Footer">
+          <div className="grid-x grid-margin-x">
+            <div className="cell small-12 medium-4">
+              <h2 className="title">AI FACTORIES</h2>
+              <div className="grid-x">
+                <div className="cell small-6 medium-6">
+                  <h3 className="heading">For every mission</h3>
+                  <ul className="links">
+                    <li>
+                      <a href="https://lambda.ai/superintelligence" aria-label="Superintelligence">
+                        Superintelligence
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://lambda.ai/enterprise" aria-label="Enterprise">
+                        Enterprise
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://lambda.ai/government" aria-label="Government">
+                        Government
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://lambda.ai/instances" aria-label="Startups and researchers">
+                        Startups and researchers
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                <div className="cell small-6 medium-6">
+                  <h3 className="heading">Foundations</h3>
+                  <ul className="links">
+                    <li>
+                      <a href="https://lambda.ai/ai-infrastructure" aria-label="AI infrastructure">
+                        AI infrastructure
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://lambda.ai/trust" aria-label="Trust and security">
+                        Trust and security
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://lambda.ai/customer-stories" aria-label="Customer stories">
+                        Customer stories
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div className="cell small-12 medium-4 medium-offset-1">
+              <h2 className="title">Products</h2>
+              <div className="grid-x">
+                <div className="cell small-6 medium-6">
+                  <h3 className="heading">Products</h3>
+                  <ul className="links">
+                    <li>
+                      <a href="https://lambda.ai/superclusters" aria-label="Superclusters">
+                        Superclusters
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://lambda.ai/1-click-clusters" aria-label="1-Click Clusters">
+                        1-Click Clusters
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://lambda.ai/instances" aria-label="Instances">
+                        Instances
+                      </a>
+                    </li>
+                  </ul>
+                  <h3 className="heading">Features</h3>
+                  <ul className="links">
+                    <li>
+                      <a href="https://lambda.ai/ai-infrastructure" aria-label="AI infrastructure">
+                        AI infrastructure
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://lambda.ai/orchestration" aria-label="Orchestration">
+                        Orchestration
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="https://lambda.ai/lambda-stack-deep-learning-software"
+                        aria-label="Lambda Stack"
+                      >
+                        Lambda Stack
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://lambda.ai/trust" aria-label="Trust and security">
+                        Trust and security
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                <div className="cell small-6 medium-6">
+                  <h3 className="heading">Docs</h3>
+                  <ul className="links">
+                    <li>
+                      <a
+                        href="https://docs.lambda.ai"
+                        aria-label="Documentation (opens in a new tab)"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Documentation
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://lambda.ai/blog" aria-label="Blog">
+                        Blog
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://lambda.ai/research" aria-label="Research">
+                        Research
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div className="cell small-12 medium-2 medium-offset-1">
+              <h2 className="title">Company</h2>
+              <div className="grid-x">
+                <div className="cell small-12">
+                  <h3 className="heading">Inside Lambda</h3>
+                  <ul className="links">
+                    <li>
+                      <a href="https://lambda.ai/about" aria-label="About">
+                        About
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://lambda.ai/careers" aria-label="Careers">
+                        Careers
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://lambda.ai/leadership" aria-label="Leadership">
+                        Leadership
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://lambda.ai/investors" aria-label="Investors">
+                        Investors
+                      </a>
+                    </li>
+                  </ul>
+                  <h3 className="heading">Resources</h3>
+                  <ul className="links">
+                    <li>
+                      <a href="https://lambda.ai/research" aria-label="Research">
+                        Research
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://lambda.ai/customer-stories" aria-label="Customer stories">
+                        Customer stories
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://lambda.ai/blog" aria-label="Blog">
+                        Blog
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://lambda.ai/partners" aria-label="Partners">
+                        Partners
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://lambda.ai/brand-guidelines" aria-label="Brand guidelines">
+                        Brand guidelines
+                      </a>
+                    </li>
+                  </ul>
+                  <ul className="links">
+                    <li>
+                      <a href="https://lambda.ai/legal/privacy-policy" aria-label="Privacy Policy">
+                        Privacy Policy
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://lambda.ai/legal/terms-of-service" aria-label="Terms of Service">
+                        Terms of Service
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" aria-label="Cookie preferences">
+                        Cookie preferences
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
+        </nav>
 
-          <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
-            <span
-              className="font-mono"
-              style={{
-                fontSize: "var(--text-xs)",
-                color: "var(--color-neutral-400)",
-              }}
-            >
-              © 2026 Lambda. All rights reserved.
-            </span>
-
-            {/* Social links */}
-            <div style={{ display: "flex", gap: 16 }}>
-              {/* LinkedIn */}
-              <a href="#" aria-label="LinkedIn" style={{ color: "var(--color-neutral-400)" }}>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-                </svg>
+        <div className="footerBranding">
+          <div className="logo">
+            <Link href="/" aria-label="Lambda home">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={FOOTER_LOGO} alt="Lambda Logo" width={171} height={40} />
+            </Link>
+          </div>
+          <div className="socialLinks">
+            {SOCIAL_LINKS.map((social) => (
+              <a
+                key={social.href}
+                href={social.href}
+                aria-label={social.label}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={social.icon} alt="" aria-hidden="true" width={40} height={40} />
               </a>
-              {/* X / Twitter */}
-              <a href="#" aria-label="X" style={{ color: "var(--color-neutral-400)" }}>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                </svg>
-              </a>
-              {/* YouTube */}
-              <a href="#" aria-label="YouTube" style={{ color: "var(--color-neutral-400)" }}>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
-                </svg>
-              </a>
-            </div>
+            ))}
           </div>
         </div>
+
+        <div className="copyright">© 2026 Lambda. All rights reserved.</div>
+      </div>
+
+      <div className="footerLines" aria-hidden="true">
+        {Array.from({ length: 7 }).map((_, i) => (
+          <div key={i} className="footerLine" />
+        ))}
       </div>
     </footer>
   );

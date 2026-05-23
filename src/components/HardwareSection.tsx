@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const PRODUCTS = [
   {
@@ -27,71 +27,88 @@ const PRODUCTS = [
 
 export default function HardwareSection() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isDesktopAccordion, setIsDesktopAccordion] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1024px)");
+    const update = () => setIsDesktopAccordion(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
 
   return (
-    <section id="section-hardware" className="hardware-section">
-      <div className="hardware-inner">
-        <div className="hardware-title-block">
-          <div className="hardware-title-left">
-            <h2 className="hardware-heading">
-              The engines of
-              <br />
-              superintelligence
-            </h2>
-          </div>
-          <div className="hardware-title-right">
-            <p className="hardware-subtitle">
-              Give your team the computational precision to train foundation
-              models and serve inference at global scale.
-            </p>
-          </div>
-        </div>
-
-        <div className="hardware-accordion">
-          {PRODUCTS.map((product, i) => {
-            const isActive = activeIndex === i;
-            return (
-              <button
-                key={product.title}
-                type="button"
-                className={`hardware-card${isActive ? " hardware-card-active" : ""}`}
-                aria-expanded={isActive}
-                onClick={() => setActiveIndex(i)}
-              >
-                <div
-                  className={`hardware-card-image${isActive ? " hardware-card-image-active" : ""}`}
-                >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={product.image}
-                    alt={product.title}
-                    width={410}
-                    height={410}
-                    className="hardware-card-img"
-                  />
+    <section id="section-hardware" className="pt-xl pb-xl module-comp hardware-module">
+      <div className="container">
+        <div className="stack--md">
+          <div className="dark-mode titleBlock">
+            <div className="positionRight">
+              <div className="grid-x grid-margin-x align-middle">
+                <div className="cell small-12 medium-7">
+                  <div className="titleBlock">
+                    <h2 className="h2">The engines of superintelligence</h2>
+                  </div>
                 </div>
-
-                <div className="hardware-card-inner">
-                  <div
-                    className={`hardware-card-text${isActive ? " hardware-card-text-active" : ""}`}
-                  >
-                    <h3 className="hardware-card-title">{product.title}</h3>
-                    <div
-                      className={`hardware-card-description font-mono${isActive ? " hardware-card-description-active" : ""}`}
-                    >
-                      {product.description}
+                <div className="cell small-12 medium-6 large-5">
+                  <div className="titleBlock">
+                    <div className="content">
+                      <div className="richtext">
+                        Give your team the computational precision to train foundation
+                        models and serve inference at global scale.
+                      </div>
                     </div>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
 
-                <div
-                  className={`hardware-indicator${isActive ? " hardware-indicator-active" : ""}`}
-                />
-              </button>
-            );
-          })}
+          <div className="hardwareAccordionItems">
+            {PRODUCTS.map((product, i) => {
+              const isActive = activeIndex === i;
+              return (
+                <button
+                  key={product.title}
+                  type="button"
+                  className={`hardwareAccordionItem no-ui-button${isActive ? " hardwareActive" : ""}`}
+                  aria-expanded={isActive}
+                  onClick={() => setActiveIndex(i)}
+                >
+                  <div
+                    className={`hardwareAccordionImage${isActive ? " hardwareActiveImage" : ""}`}
+                  >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={product.image}
+                      alt={product.title}
+                      width={410}
+                      height={410}
+                      className="hardwareAccordionImg"
+                    />
+                  </div>
+                  <div className="hardwareAccordionItemInner">
+                    <div
+                      className={`hardwareAccordionTextContent${isActive ? " hardwareActiveTextContent" : ""}`}
+                      {...(!isActive && isDesktopAccordion ? { inert: true } : {})}
+                    >
+                      <h3 className="hardwareAccordionItemTitle">{product.title}</h3>
+                      <div
+                        className={`hardwareAccordionItemRichText${isActive ? " hardwareActiveRichText" : ""}`}
+                      >
+                        {product.description}
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    className={`hardwareAccordionItemIndicator${isActive ? " hardwareActiveIndicator" : ""}`}
+                  />
+                </button>
+              );
+            })}
+          </div>
         </div>
       </div>
+      <div className="sectionBorder" />
     </section>
   );
 }
